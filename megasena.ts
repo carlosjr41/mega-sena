@@ -1,3 +1,4 @@
+import { writeFileSync } from 'fs';
 import readXlsxFile from 'read-excel-file/node';
 import { Aposta } from './aposta';
 
@@ -43,7 +44,8 @@ function getApostas(apostas: Aposta[], dezenasSorteadas: number[] = []) {
   const apostasExibidas = apostas
     .sort((a, b) => b.acertos - a.acertos);
 
-  console.log(apostasExibidas);
+
+  writeFileSync(`resultado${bolao}.json`, JSON.stringify(apostasExibidas, null, 2));
 }
 
 
