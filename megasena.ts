@@ -5,16 +5,27 @@ const prompt = require('prompt-sync')();
 
 
 const jogoSorteado: number[] = converteDezenasEmInteiros(prompt("Quais os jogos sorteados? usar padrão (XX - XX - XX - XX - XX - XX) "));
+const bolao: string = prompt("qual o bolão? ");
 
 
-const schema = {
+const schemaIfes = {
   'Número': {
     prop: 'dezenas',
     type: String
   }
 }
 
-readXlsxFile('bolaoIfes.xlsx', { schema }).then(({ rows }) => {
+const schemaEtaure = {
+  'Mega-Sena': {
+    prop: 'dezenas',
+    type: String
+  }
+}
+
+const schema = bolao.toLowerCase() === "ifes" ? schemaIfes : schemaEtaure;
+const fileName = bolao.toLowerCase() === "ifes" ? "bolaoIfes.xlsx" : "bolaoEtaure.xlsx";
+
+readXlsxFile(fileName, { schema }).then(({ rows }) => {
   const apostas: Aposta[] = rows.map((row: any) => {
     return { ...row, acertos: 0 }
   })
