@@ -1,4 +1,4 @@
-import { writeFileSync } from 'fs';
+import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import readXlsxFile from 'read-excel-file/node';
 import { Aposta } from './aposta';
 
@@ -44,18 +44,25 @@ function getApostas(apostas: Aposta[], dezenasSorteadas: number[] = []) {
   const apostasExibidas = apostas
     .sort((a, b) => b.acertos - a.acertos);
 
-
-  writeFileSync(`resultado${bolao}.json`, JSON.stringify(apostasExibidas, null, 2));
+  salvaArquivoDeSaida(apostasExibidas);
 }
 
 
 function converteDezenasEmInteiros(aposta: String): number[] {
-  return aposta.split('-').map(dezena => parseInt(dezena)).sort();
+  return aposta.split('-').map(dezena => parseInt(dezena)).sort((a,b) => a - b);
 }
 
 function contaAcertos(apostaChecada: number[], jogoSorteado: number[]): number {
   return apostaChecada
-    .reduce((acertos, jogo) => acertos += jogoSorteado.includes(jogo) ? 1 : 0, 0);
+    .reduce((acertos, dezena) => acertos += jogoSorteado.includes(dezena) ? 1 : 0, 0);
+}
+
+function salvaArquivoDeSaida(apostas: Aposta[]){
+  if (!existsSync('output')){
+    mkdirSync('output');
+  }
+
+  writeFileSync(`output/resultado${bolao}.json`, JSON.stringify(apostas, null, 2));
 }
 
 

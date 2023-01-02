@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx tsc megasena.ts",
-    "start": "node megasena.js"
+    "tsc": "npx tsc megasena.ts --outDir dist",
+    "copy": "cp input/bolaoEtaure.xlsx dist && cp input/bolaoIfes.xlsx dist",
+    "build": "npm run tsc && npm run copy",
+    "start": "cd dist && node megasena.js"
   },
   "author": "",
   "license": "ISC",
