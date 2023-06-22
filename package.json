@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tsc": "npx tsc",
-    "copy": "cp input/bolaoEtaure.xlsx dist && cp input/bolaoIfes.xlsx dist",
-    "build": "npm run tsc && npm run copy",
+    "build": "npx tsc",
     "start": "cd dist && node main.js"
   },
   "author": "",
