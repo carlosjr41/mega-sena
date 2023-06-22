@@ -25,11 +25,14 @@ export async function readExcelFile(lotteryPoolName: string): Promise<number[][]
 }
 
 export function saveResults(games: LotteryGame[], fileName: string) {
+
+  const gamesSorted = games.sort((a, b) => b.hits - a.hits).map(game => game.jsonRepresentation());
+
   if (!existsSync('output')) {
     mkdirSync('output');
   }
 
-  writeFileSync(`output/resultado${fileName}.json`, JSON.stringify(games, null, 2));
+  writeFileSync(`output/resultado${fileName}.json`, JSON.stringify(gamesSorted, null, 2));
 }
 
 export function convertStringToArrayOfNumbersSorted(numbers: string): number[] {

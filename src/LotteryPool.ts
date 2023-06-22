@@ -12,14 +12,7 @@ export class LotteryPool {
   }
 
   private buildGames(games: number[][], winningGame: number[] = []): LotteryGame[] {
-
-    return games.map(game => {
-      return { 
-        numbers: game, 
-        hits: this.countHits(game, winningGame) 
-      }
-    });
-
+    return games.map(game => new LotteryGame(game, this.countHits(game, winningGame)));
   }
 
   private countHits(gameToCheck: number[], winningGame: number[]): number {
