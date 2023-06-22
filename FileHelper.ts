@@ -12,9 +12,9 @@ export function readWinningGame(): number[] {
   return convertStringToArrayOfNumbersSorted(prompt("Quais os jogos sorteados? usar padrão (XX - XX - XX - XX - XX - XX) "));
 }
 
-export async function readExcelFile(fileName: any): Promise<number[][]> {
-
-  const rows = await readXlsxFile(fileName);
+export async function readExcelFile(lotteryPoolName: string): Promise<number[][]> {
+  const excelName: any = lotteryPoolName.toLowerCase() === "ifes" ? "../input/bolaoIfes.xlsx" : "../input/bolaoEtaure.xlsx";
+  const rows = await readXlsxFile(excelName);
 
   return rows.map((row: Row) => convertStringToArrayOfNumbersSorted(row[0].toString()));
 

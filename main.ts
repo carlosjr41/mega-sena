@@ -1,9 +1,5 @@
-import { existsSync, mkdirSync, writeFileSync } from 'fs';
-import readXlsxFile from 'read-excel-file/node';
-import { LotteryGame } from './LotteryGame';
-import { LotteryPool } from './LotteryPool';
 import { readExcelFile, readLotteryPoolName, readWinningGame, saveResults } from './FileHelper';
-
+import { LotteryPool } from './LotteryPool';
 
 const lotteryPoolName: string = readLotteryPoolName();
 
@@ -14,7 +10,7 @@ readExcelFile(excelName).then(games => {
   const lotteryPool: LotteryPool = new LotteryPool(games, winningGame);
   
   saveResults(lotteryPool.games, lotteryPoolName);
-})
+});
 
 
 

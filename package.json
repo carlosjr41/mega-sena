@@ -8,7 +8,7 @@
     "tsc": "npx tsc main.ts --outDir dist",
     "copy": "cp input/bolaoEtaure.xlsx dist && cp input/bolaoIfes.xlsx dist",
     "build": "npm run tsc && npm run copy",
-    "start": "cd dist && node megasena.js"
+    "start": "cd dist && node main.js"
   },
   "author": "",
   "license": "ISC",
