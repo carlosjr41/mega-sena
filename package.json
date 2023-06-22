@@ -5,10 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tsc": "npx tsc megasena.ts --outDir dist",
-    "copy": "cp input/bolaoEtaure.xlsx dist && cp input/bolaoIfes.xlsx dist",
-    "build": "npm run tsc && npm run copy",
-    "start": "cd dist && node megasena.js"
+    "build": "npx tsc",
+    "start": "cd dist && node main.js"
   },
   "author": "",
   "license": "ISC",
@@ -16,9 +14,10 @@
     "file-saver": "^2.0.5",
     "prompt-sync": "^4.2.0",
     "read-excel-file": "^5.5.3",
-    "typescript": "^4.9.4"
+    "typescript": "^5.1.3"
   },
   "devDependencies": {
     "@types/node": "^18.11.18"
-  }
+  },
+  "type": "commonjs"
 }
