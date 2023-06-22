@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tsc": "npx tsc main.ts --outDir dist",
+    "tsc": "npx tsc",
     "copy": "cp input/bolaoEtaure.xlsx dist && cp input/bolaoIfes.xlsx dist",
     "build": "npm run tsc && npm run copy",
     "start": "cd dist && node main.js"
@@ -20,5 +20,6 @@
   },
   "devDependencies": {
     "@types/node": "^18.11.18"
-  }
+  },
+  "type": "commonjs"
 }

@@ -2,3 +2,5 @@ node_modules/
 dist/
 test.js
 testBaseUrl.js
+.vscode/
+.DS_Store

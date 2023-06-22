@@ -1,6 +1,6 @@
 import { existsSync, mkdirSync, writeFileSync } from "fs";
+import readXlsxFile, { Row } from "read-excel-file/node";
 import { LotteryGame } from "./LotteryGame";
-import { Row, readXlsxFile } from "read-excel-file";
 
 const prompt = require('prompt-sync')();
 
@@ -13,10 +13,13 @@ export function readWinningGame(): number[] {
 }
 
 export async function readExcelFile(lotteryPoolName: string): Promise<number[][]> {
-  const excelName: any = lotteryPoolName.toLowerCase() === "ifes" ? "../input/bolaoIfes.xlsx" : "../input/bolaoEtaure.xlsx";
-  const rows = await readXlsxFile(excelName);
+  const excelName = lotteryPoolName.toLowerCase() === "ifes" ? "../input/bolaoIfes.xlsx" : "../input/bolaoEtaure.xlsx";
+  return readXlsxFile(excelName)
+    .then(rows => { 
+      console.log(rows);
+      return rows.map((row: Row) => convertStringToArrayOfNumbersSorted(row[0].toString())); 
+    })
 
-  return rows.map((row: Row) => convertStringToArrayOfNumbersSorted(row[0].toString()));
 
 }
 
