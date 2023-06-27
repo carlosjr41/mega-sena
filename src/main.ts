@@ -1,14 +1,14 @@
-import { readExcelFile, readLotteryPoolName, readWinningGame, saveResults } from './FileHelper';
+import { readFile, readTypeFile, readWinningGame, saveResults } from './FileHelper';
 import { LotteryPool } from './LotteryPool';
 
-const lotteryPoolName: string = readLotteryPoolName();
+const typeFile: string = readTypeFile();
 
 const winningGame: number[] = readWinningGame();
 
-readExcelFile(lotteryPoolName).then(games => {
+readFile(typeFile).then(games => {
   const lotteryPool: LotteryPool = new LotteryPool(games, winningGame);
   
-  saveResults(lotteryPool.games, lotteryPoolName);
+  saveResults(lotteryPool.games, typeFile);
 });
 
 
