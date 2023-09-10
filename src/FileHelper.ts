@@ -37,7 +37,7 @@ async function readTextFile(fileName: string): Promise<number[][]> {
   return file.split('\n').map(convertStringToArrayOfNumbersSorted);
 }
 
-export function saveResults(games: LotteryGame[], fileName: string) {
+export function saveResults(games: LotteryGame[]) {
 
   const gamesSorted = games.sort((a, b) => b.hits - a.hits).map(game => game.jsonRepresentation());
 

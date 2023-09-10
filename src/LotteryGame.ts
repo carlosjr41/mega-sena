@@ -25,6 +25,6 @@ export class LotteryGame {
   private formatNumber(number: number): string {
     return number.toLocaleString("pt-BR", {
       minimumIntegerDigits: 2
-    })
+    });
   }
 }

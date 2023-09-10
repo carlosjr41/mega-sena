@@ -8,7 +8,7 @@ const winningGame: number[] = readWinningGame();
 readFile(typeFile).then(games => {
   const lotteryPool: LotteryPool = new LotteryPool(games, winningGame);
   
-  saveResults(lotteryPool.games, typeFile);
+  saveResults(lotteryPool.games);
 });
 
 
